@@ -9,10 +9,15 @@
         font-family: Arial, sans-serif;
         margin: 0;
         padding: 0;
+        background-color: #282e30;
+      }
+
+      h1 {
+        color: #dbdbdb;
       }
 
       .legend {
-        background-color: #f0f0f0;
+        background-color: #dbdbdb;
         padding: 10px;
         margin: 20px;
         border-radius: 5px;
@@ -44,6 +49,25 @@
         margin-bottom: 5px;
       }
 
+      .numbered-list {
+        list-style-type: none; /* Remove default list numbering */
+        counter-reset: list-counter; /* Initialize the counter */
+        padding-left: 0; /* Remove default padding */
+      }
+
+      .numbered-list li {
+        counter-increment: list-counter; /* Increment the counter for each list item */
+        padding-left: 30px; /* Add space for the numbers */
+        position: relative; /* Position the numbers relative to the list items */
+      }
+
+      .numbered-list li:before {
+        content: counter(list-counter); /* Display the counter value */
+        position: absolute; /* Position the numbers absolutely */
+        left: -10px; /* Align the numbers to the left */
+        width: 20px; /* Adjust the width of the counter */
+        text-align: right; /* Align the counter to the right */
+      }
       .arrow {
         position: absolute;
         left: -20px;
@@ -64,7 +88,7 @@
 
       .map-container {
         width: 100%;
-        height: 400px;
+        height: 800px;
         background-size: contain; /* Adjust to 'cover' or 'contain' based on your preference */
         background-position: center;
         background-repeat: no-repeat;
@@ -80,77 +104,83 @@
         <li class="province" id="BC">
           <b>British Columbia</b><span class="arrow"></span>
           <ul>
-            <li>Victoria</li>
-            <li>Vancouver</li>
+            <li type="disc">Victoria</li>
+            <li type="circle">Vancouver</li>
           </ul>
         </li>
         <li class="province" id="alberta">
           <b>Alberta</b> <span class="arrow"></span>
           <ul>
-            <li>Calgary</li>
-            <li>Edmonton</li>
+            <li type="disc">Edmonton</li>
+            <li type="circle">Calgary</li>
           </ul>
         </li>
         <li class="province" id="sas">
           <b>Saskatchewan</b> <span class="arrow"></span>
           <ul>
-            <li>Regina</li>
+            <li type="disc">Regina</li>
           </ul>
         </li>
         <li class="province" id="manitoba">
           <b>Manitoba</b> <span class="arrow"></span>
           <ul>
-            <li>Winnipeg</li>
+            <li type="disc">Winnipeg</li>
           </ul>
         </li>
         <li class="province" id="ontario">
           <b>Ontario</b> <span class="arrow"></span>
           <ul>
-            <li>Toronto</li>
-            <li>Ottawa</li>
+            <li type="disc">Toronto</li>
+            <li type="circle">Ottawa</li>
           </ul>
         </li>
         <li class="province" id="quebec">
           <b>Quebec</b> <span class="arrow"></span>
           <ul>
-            <li>Quebec City</li>
-            <li>Montreal</li>
+            <li type="disc">Quebec City</li>
+            <li type="circle">Montreal</li>
           </ul>
         </li>
         <li class="province" id="NFL">
           <b>Newfoundland and Labrador</b> <span class="arrow"></span>
           <ul>
-            <li>St. John's</li>
+            <li type="disc">St. John's</li>
           </ul>
         </li>
         <li class="province" id="NB">
           <b>New Brunswick</b> <span class="arrow"></span>
           <ul>
-            <li>Fredricton</li>
+            <li type="disc">Fredricton</li>
           </ul>
         </li>
         <li class="province" id="NS">
           <b>Nova Scotia</b> <span class="arrow"></span>
           <ul>
-            <li>Halifax</li>
+            <li type="disc">Halifax</li>
+          </ul>
+        </li>
+        <li class="province" id="PEI">
+          <b>Prince Edward Island</b> <span class="arrow"></span>
+          <ul>
+            <li type="disc">Charlottetown</li>
           </ul>
         </li>
         <li class="province" id="yukon">
           <b>Yukon</b> <span class="arrow"></span>
           <ul>
-            <li>Whitehorse</li>
+            <li type="disc">Whitehorse</li>
           </ul>
         </li>
         <li class="province" id="NWT">
           <b>Northwest Territories</b> <span class="arrow"></span>
           <ul>
-            <li>Yellowknife</li>
+            <li type="disc">Yellowknife</li>
           </ul>
         </li>
         <li class="province" id="nunavut">
           <b>Nunavut</b> <span class="arrow"></span>
           <ul>
-            <li>Iqaluit</li>
+            <li type="disc">Iqaluit</li>
           </ul>
         </li>
       </ul>
@@ -162,14 +192,14 @@
         <li class="province" id="oceans">
           <b>Oceans</b> <span class="arrow"></span>
           <ul>
-            <li>Pacific Ocean</li>
-            <li>Atlantic Ocean</li>
-            <li>Artic Ocean</li>
+            <li type="disc" class="blue">Pacific Ocean</li>
+            <li type="circle">Atlantic Ocean</li>
+            <li type="square">Artic Ocean</li>
           </ul>
         </li>
         <li class="province" id="TGL">
           <b>The Great Lakes</b> <span class="arrow"></span>
-          <ul>
+          <ul class="numbered-list">
             <li>Lake Superior</li>
             <li>Lake Huron</li>
             <li>Lake Ontario</li>
@@ -180,13 +210,13 @@
         <li class="province" id="bays">
           <b>Bays</b> <span class="arrow"></span>
           <ul>
-            <li>Hudson Bay</li>
-            <li>James Bay</li>
+            <li type="disc">Hudson Bay</li>
+            <li type="circle">James Bay</li>
           </ul>
         </li>
         <li class="province" id="rivers">
           <b>Rivers</b> <span class="arrow"></span>
-          <ul>
+          <ul class="numbered-list">
             <li>St. Lawrence River</li>
             <li>MacKenzie River</li>
             <li>Red River</li>
@@ -196,7 +226,7 @@
         </li>
         <li class="province" id="lakes">
           <b>Lakes</b> <span class="arrow"></span>
-          <ul>
+          <ul class="numbered-list">
             <li>Lake Winnipeg</li>
             <li>Lake Manitoba</li>
             <li>Great Slave Lake</li>
@@ -204,14 +234,16 @@
           </ul>
         </li>
       </ul>
-    </div>
-
-    <div class="legend">
-      <h2>Islands</h2>
       <ul>
-        <li>Baffin Island</li>
-        <li>Victoria Island</li>
-        <li>Vancouver Island</li>
+        <li class="province" id="islands">
+          <h2>Islands</h2>
+          <span class="arrow"></span>
+          <ul>
+            <li type="disc">Baffin Island</li>
+            <li type="circle">Victoria Island</li>
+            <li type="square">Vancouver Island</li>
+          </ul>
+        </li>
       </ul>
     </div>
 
@@ -246,29 +278,31 @@
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         const map = document.getElementById("map");
-        const defaultMapImage = "MapBase.jpg"; // Default base map image
+        const defaultMapImage = "MapBase.png"; // Default base map image
         let currentProvince = null;
 
         map.style.backgroundImage = `url('${defaultMapImage}')`;
 
         const provinces = {
-          BC: "BCTest.png",
-          alberta: "AlbertaTest.png",
-          sas: "",
-          manitoba: "",
-          ontario: "",
-          quebec: "",
-          NFL: "",
-          NB: "",
-          NS: "",
-          yukon: "",
-          NWT: "",
-          nunavut: "",
-          oceans: "",
+          BC: "MapBc.png",
+          alberta: "MapAlberta.png",
+          sas: "MapSas.png",
+          manitoba: "MapManitoba.png",
+          ontario: "MapOntario.png",
+          quebec: "MapQuebec.png",
+          NFL: "MapNFL.png",
+          NB: "MapNB.png",
+          NS: "MapNS.png",
+          PEI: "MapPEI.png",
+          yukon: "MapYukon.png",
+          NWT: "MapNWT.png",
+          nunavut: "MapNunavut.png",
+          oceans: "MapOceans.png",
           TGL: "",
-          bays: "",
+          bays: "MapBays.png",
           rivers: "",
           lakes: "",
+          Islands: "",
         };
 
         document.querySelectorAll(".province").forEach(function (province) {
