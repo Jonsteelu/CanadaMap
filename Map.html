@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive Map of Canada</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      .legend {
+        background-color: #f0f0f0;
+        padding: 10px;
+        margin: 20px;
+        border-radius: 5px;
+        width: 500px;
+        margin-bottom: 20px;
+      }
+
+      .legend {
+        float: left; /* Float the legend to the left */
+        width: 30%; /* Set the width of the legend */
+      }
+
+      h1 {
+        text-align: center;
+      }
+
+      ul {
+        list-style-type: none;
+        padding-left: 20px;
+      }
+
+      ul ul {
+        display: block;
+      }
+
+      li {
+        cursor: pointer;
+        position: relative;
+        margin-bottom: 5px;
+      }
+
+      .arrow {
+        position: absolute;
+        left: -20px;
+        top: 50%;
+        transform: translateY(-50%) rotate(0deg);
+        width: 0;
+        height: 0;
+        border-left: 5px solid transparent;
+        border-right: 5px solid black;
+        border-top: 5px solid transparent;
+        border-bottom: 5px solid transparent;
+        transition: transform 0.3s;
+      }
+
+      .expanded {
+        transform: translateY(-50%) rotate(90deg);
+      }
+
+      .map-container {
+        width: 100%;
+        height: 400px;
+        background-size: contain; /* Adjust to 'cover' or 'contain' based on your preference */
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Interactive Map of Canada</h1>
+    <div id="map" class="map-container"></div>
+    <div class="legend">
+      <h2>Provinces & Territories</h2>
+      <ul>
+        <li class="province" id="BC">
+          <b>British Columbia</b><span class="arrow"></span>
+          <ul>
+            <li>Victoria</li>
+            <li>Vancouver</li>
+          </ul>
+        </li>
+        <li class="province" id="alberta">
+          <b>Alberta</b> <span class="arrow"></span>
+          <ul>
+            <li>Calgary</li>
+            <li>Edmonton</li>
+          </ul>
+        </li>
+        <li class="province" id="sas">
+          <b>Saskatchewan</b> <span class="arrow"></span>
+          <ul>
+            <li>Regina</li>
+          </ul>
+        </li>
+        <li class="province" id="manitoba">
+          <b>Manitoba</b> <span class="arrow"></span>
+          <ul>
+            <li>Winnipeg</li>
+          </ul>
+        </li>
+        <li class="province" id="ontario">
+          <b>Ontario</b> <span class="arrow"></span>
+          <ul>
+            <li>Toronto</li>
+            <li>Ottawa</li>
+          </ul>
+        </li>
+        <li class="province" id="quebec">
+          <b>Quebec</b> <span class="arrow"></span>
+          <ul>
+            <li>Quebec City</li>
+            <li>Montreal</li>
+          </ul>
+        </li>
+        <li class="province" id="NFL">
+          <b>Newfoundland and Labrador</b> <span class="arrow"></span>
+          <ul>
+            <li>St. John's</li>
+          </ul>
+        </li>
+        <li class="province" id="NB">
+          <b>New Brunswick</b> <span class="arrow"></span>
+          <ul>
+            <li>Fredricton</li>
+          </ul>
+        </li>
+        <li class="province" id="NS">
+          <b>Nova Scotia</b> <span class="arrow"></span>
+          <ul>
+            <li>Halifax</li>
+          </ul>
+        </li>
+        <li class="province" id="yukon">
+          <b>Yukon</b> <span class="arrow"></span>
+          <ul>
+            <li>Whitehorse</li>
+          </ul>
+        </li>
+        <li class="province" id="NWT">
+          <b>Northwest Territories</b> <span class="arrow"></span>
+          <ul>
+            <li>Yellowknife</li>
+          </ul>
+        </li>
+        <li class="province" id="nunavut">
+          <b>Nunavut</b> <span class="arrow"></span>
+          <ul>
+            <li>Iqaluit</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <div class="legend">
+      <h2>Bodies of Water</h2>
+      <ul>
+        <li class="province" id="oceans">
+          <b>Oceans</b> <span class="arrow"></span>
+          <ul>
+            <li>Pacific Ocean</li>
+            <li>Atlantic Ocean</li>
+            <li>Artic Ocean</li>
+          </ul>
+        </li>
+        <li class="province" id="TGL">
+          <b>The Great Lakes</b> <span class="arrow"></span>
+          <ul>
+            <li>Lake Superior</li>
+            <li>Lake Huron</li>
+            <li>Lake Ontario</li>
+            <li>Lake Michigan</li>
+            <li>Lake Erie</li>
+          </ul>
+        </li>
+        <li class="province" id="bays">
+          <b>Bays</b> <span class="arrow"></span>
+          <ul>
+            <li>Hudson Bay</li>
+            <li>James Bay</li>
+          </ul>
+        </li>
+        <li class="province" id="rivers">
+          <b>Rivers</b> <span class="arrow"></span>
+          <ul>
+            <li>St. Lawrence River</li>
+            <li>MacKenzie River</li>
+            <li>Red River</li>
+            <li>North/South Saskatchewan River</li>
+            <li>Fraser River</li>
+          </ul>
+        </li>
+        <li class="province" id="lakes">
+          <b>Lakes</b> <span class="arrow"></span>
+          <ul>
+            <li>Lake Winnipeg</li>
+            <li>Lake Manitoba</li>
+            <li>Great Slave Lake</li>
+            <li>Great Bear Lake</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <div class="legend">
+      <h2>Islands</h2>
+      <ul>
+        <li>Baffin Island</li>
+        <li>Victoria Island</li>
+        <li>Vancouver Island</li>
+      </ul>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const provinces = document.querySelectorAll(".province");
+
+        provinces.forEach((province) => {
+          const cityList = province.querySelector("ul");
+          cityList.style.display = "none";
+
+          province.addEventListener("click", () => {
+            // Collapse all other items
+            provinces.forEach((otherProvince) => {
+              if (otherProvince !== province) {
+                otherProvince.querySelector("ul").style.display = "none";
+                otherProvince
+                  .querySelector(".arrow")
+                  .classList.remove("expanded");
+              }
+            });
+
+            // Toggle current item
+            cityList.style.display =
+              cityList.style.display === "none" ? "block" : "none";
+            province.querySelector(".arrow").classList.toggle("expanded");
+          });
+        });
+      });
+    </script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const map = document.getElementById("map");
+        const defaultMapImage = "MapBase.jpg"; // Default base map image
+        let currentProvince = null;
+
+        map.style.backgroundImage = `url('${defaultMapImage}')`;
+
+        const provinces = {
+          BC: "BCTest.png",
+          alberta: "AlbertaTest.png",
+          sas: "",
+          manitoba: "",
+          ontario: "",
+          quebec: "",
+          NFL: "",
+          NB: "",
+          NS: "",
+          yukon: "",
+          NWT: "",
+          nunavut: "",
+          oceans: "",
+          TGL: "",
+          bays: "",
+          rivers: "",
+          lakes: "",
+        };
+
+        document.querySelectorAll(".province").forEach(function (province) {
+          province.addEventListener("click", function () {
+            const provinceId = this.id;
+            const provinceMap = provinces[provinceId];
+
+            if (provinceMap && currentProvince !== provinceId) {
+              currentProvince = provinceId;
+              map.style.backgroundImage = `url('${provinceMap}')`;
+            } else {
+              currentProvince = null;
+              map.style.backgroundImage = `url('${defaultMapImage}')`;
+            }
+          });
+
+          province
+            .querySelector("ul")
+            .addEventListener("click", function (event) {
+              event.stopPropagation(); // Prevent the click event from bubbling up to the parent
+            });
+        });
+      });
+    </script>
+  </body>
+</html>
