@@ -1,1 +1,1 @@
-Interactive Map of Canada for school project
+Source code for an Interactive Map of Canada for school project
